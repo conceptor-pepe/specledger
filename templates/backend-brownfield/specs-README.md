@@ -1,11 +1,11 @@
 # Specs
 
-`specs/` stores long-term system truth.
+`docs/specs/` stores long-term system truth.
 
 Recommended structure:
 
 ```text
-specs/
+docs/specs/
 └── <domain>/
     ├── business.md
     ├── api.md

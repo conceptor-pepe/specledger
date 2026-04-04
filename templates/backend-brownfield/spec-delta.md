@@ -2,7 +2,7 @@
 
 ## Affected Specs
 
-- `specs/<domain>/business.md`
+- `docs/specs/<domain>/business.md`
 
 ## ADDED
 

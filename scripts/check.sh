@@ -36,6 +36,11 @@ for profile in minimal go-service backend-brownfield; do
   fi
 done
 
+echo "Checking example verify and archive flows..."
+example_change="$root_dir/examples/go-backend/docs/changes/2026-04-04-add-team-join-audit"
+"$root_dir/scripts/xiezhi-verify.sh" "$example_change" >/dev/null
+"$root_dir/scripts/xiezhi-archive.sh" "$example_change" >/dev/null
+
 echo "Checking required root files..."
 for file in README.md VERSION CHANGELOG.md LICENSE; do
   if [[ ! -f "$root_dir/$file" ]]; then

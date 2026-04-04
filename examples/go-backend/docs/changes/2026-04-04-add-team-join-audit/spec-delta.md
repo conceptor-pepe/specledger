@@ -2,7 +2,7 @@
 
 ## Affected Specs
 
-- `specs/team/business.md`
+- `docs/specs/team/business.md`
 
 ## ADDED
 

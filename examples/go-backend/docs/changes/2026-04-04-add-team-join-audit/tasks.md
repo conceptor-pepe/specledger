@@ -7,9 +7,14 @@
 
 ## 2. Implementation
 
-- [ ] 2.1 Add audit write path
+- [x] 2.1 Add audit write path
 
 ## 3. Verification
 
-- [ ] 3.1 Run audit
-- [ ] 3.2 Complete test review
+- [x] 3.1 Run audit
+- [x] 3.2 Complete test review
+
+## 4. Archive
+
+- [x] 4.1 Update long-term spec
+- [x] 4.2 Prepare archive record

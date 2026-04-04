@@ -2,7 +2,7 @@
 
 ## Spec Targets
 
-- `specs/<domain>/business.md`
+- `docs/specs/<domain>/business.md`
 
 ## Updates Applied
 

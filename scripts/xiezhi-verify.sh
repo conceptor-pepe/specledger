@@ -2,17 +2,90 @@
 
 set -euo pipefail
 
+usage() {
+  echo "Usage: scripts/xiezhi-verify.sh <change-dir>" >&2
+}
+
+repo_root_from_change() {
+  local dir="$1"
+  local abs_dir
+  abs_dir="$(cd "$dir" && pwd)"
+
+  case "$abs_dir" in
+    */docs/changes/*)
+      printf '%s\n' "${abs_dir%%/docs/changes/*}"
+      return 0
+      ;;
+  esac
+
+  if git -C "$abs_dir" rev-parse --show-toplevel >/dev/null 2>&1; then
+    git -C "$abs_dir" rev-parse --show-toplevel
+    return 0
+  fi
+
+  return 1
+}
+
+require_no_placeholders() {
+  local path="$1"
+  if rg -n '<[^>]+>' "$path" >/dev/null 2>&1; then
+    echo "Placeholders remain in: $path" >&2
+    return 1
+  fi
+  return 0
+}
+
+task_gate_ok() {
+  local tasks_file="$1"
+  awk '
+    /^## 4\. Archive/ { in_archive=1 }
+    !in_archive && /- \[ \]/ { found=1 }
+    END { exit(found ? 1 : 0) }
+  ' "$tasks_file"
+}
+
+extract_status() {
+  local file="$1"
+  local key="$2"
+  awk -F': ' -v wanted="$key" '
+    $0 ~ "^- " wanted ":" {
+      print $2
+      exit
+    }
+  ' "$file"
+}
+
+warn_status() {
+  local label="$1"
+  local status="$2"
+  if [[ "$status" == "not-run" ]]; then
+    echo "Warning: $label is marked not-run" >&2
+  fi
+}
+
 if [[ $# -ne 1 ]]; then
-  echo "Usage: xiezhi/scripts/xiezhi-verify.sh <change-dir>" >&2
+  usage
   exit 1
 fi
 
 change_dir="${1%/}"
+if [[ ! -d "$change_dir" ]]; then
+  echo "Change directory not found: $change_dir" >&2
+  exit 1
+fi
+
+repo_root="$(repo_root_from_change "$change_dir" || true)"
+if [[ -z "$repo_root" ]]; then
+  echo "Unable to determine repository root from change dir: $change_dir" >&2
+  exit 1
+fi
+
 required=(
   change.md
   spec-delta.md
   design.md
   tasks.md
+  review.md
   audit.md
   test-review.md
   commit-summary.md
@@ -25,9 +98,68 @@ for file in "${required[@]}"; do
   fi
 done
 
-if rg -n '<[^>]+>' "$change_dir" >/dev/null 2>&1; then
-  echo "Placeholders remain in $change_dir" >&2
+for file in "${required[@]}"; do
+  require_no_placeholders "$change_dir/$file"
+done
+
+if ! task_gate_ok "$change_dir/tasks.md"; then
+  echo "Unchecked tasks remain before archive stage: $change_dir/tasks.md" >&2
+  exit 1
+fi
+
+go_audit_status="$(extract_status "$change_dir/audit.md" "status")"
+build_status="$(extract_status "$change_dir/audit.md" "build")"
+lint_status="$(extract_status "$change_dir/audit.md" "lint")"
+test_status="$(extract_status "$change_dir/audit.md" "test")"
+
+if [[ "$go_audit_status" != "pass" ]]; then
+  echo "Go audit must be pass, got: ${go_audit_status:-missing}" >&2
+  exit 1
+fi
+
+for item in "build:$build_status" "lint:$lint_status" "test:$test_status"; do
+  name="${item%%:*}"
+  status="${item#*:}"
+  if [[ "$status" == "fail" ]]; then
+    echo "$name is marked fail in audit.md" >&2
+    exit 1
+  fi
+  warn_status "$name" "$status"
+done
+
+if ! rg -n '^\|.*\|.*\|.*\|.*\|.*\|$' "$change_dir/test-review.md" >/dev/null 2>&1; then
+  echo "Test review must include a case table: $change_dir/test-review.md" >&2
+  exit 1
+fi
+
+if ! rg -n '^## (Review Summary|Conclusion)$' "$change_dir/test-review.md" >/dev/null 2>&1; then
+  echo "Test review must include summary and conclusion sections: $change_dir/test-review.md" >&2
+  exit 1
+fi
+
+summary_build="$(extract_status "$change_dir/commit-summary.md" "build")"
+summary_lint="$(extract_status "$change_dir/commit-summary.md" "lint")"
+summary_test="$(extract_status "$change_dir/commit-summary.md" "test")"
+summary_audit="$(extract_status "$change_dir/commit-summary.md" "audit")"
+
+for item in "build:$summary_build" "lint:$summary_lint" "test:$summary_test" "audit:$summary_audit"; do
+  name="${item%%:*}"
+  status="${item#*:}"
+  if [[ -z "$status" ]]; then
+    echo "Missing $name validation status in commit-summary.md" >&2
+    exit 1
+  fi
+  if [[ "$status" == "fail" ]]; then
+    echo "commit-summary.md marks $name as fail" >&2
+    exit 1
+  fi
+  warn_status "commit-summary $name" "$status"
+done
+
+if [[ "$summary_audit" != "pass" ]]; then
+  echo "commit-summary.md must record audit as pass, got: $summary_audit" >&2
   exit 1
 fi
 
 echo "Verify passed: $change_dir"
+echo "Repository root: $repo_root"
