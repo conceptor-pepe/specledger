@@ -1,0 +1,10 @@
+templates/backend-brownfield/change.md	docs/templates/change.md
+templates/backend-brownfield/spec-delta.md	docs/templates/spec-delta.md
+templates/backend-brownfield/tasks.md	docs/templates/tasks.md
+templates/backend-brownfield/specs-README.md	docs/specs/README.md
+templates/backend-brownfield/changes-README.md	docs/changes/README.md
+rules/core/xiezhi-spec.mdc	.cursor/rules/xiezhi-spec.mdc
+scripts/xiezhi-new-change.sh	scripts/xiezhi-new-change.sh
+scripts/xiezhi-verify.sh	scripts/xiezhi-verify.sh
+scripts/xiezhi-archive.sh	scripts/xiezhi-archive.sh
+scripts/xiezhi-check-pr.sh	scripts/xiezhi-check-pr.sh

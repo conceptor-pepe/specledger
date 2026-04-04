@@ -1,0 +1,70 @@
+# Profiles
+
+Xiezhi profiles package different installation footprints for different adoption levels.
+
+## `minimal`
+
+Best for:
+
+- teams trying Xiezhi for the first time
+- repositories that want scripts and artifact structure before tool adapters
+
+Includes:
+
+- core templates
+- `docs/specs/README.md`
+- `docs/changes/README.md`
+- core workflow rule
+- scripts
+
+Does not include:
+
+- Cursor adapters
+- GitHub Copilot prompts
+
+## `go-service`
+
+Best for:
+
+- Go service repositories
+- teams using Cursor but not necessarily repository-local Copilot prompts
+
+Includes:
+
+- full template set
+- core workflow rule
+- Cursor command adapters
+- scripts
+
+## `backend-brownfield`
+
+Best for:
+
+- brownfield backend repositories
+- teams that want the most complete repository-local setup
+
+Includes:
+
+- full template set
+- core workflow rule
+- Cursor command adapters
+- GitHub Copilot prompts
+- scripts
+
+## Recommendation
+
+If you are unsure:
+
+- start with `minimal` for low-friction adoption
+- use `go-service` for a typical Go backend team
+- use `backend-brownfield` when you want the strongest repository-local workflow setup
+
+## Tool Selection
+
+After choosing a profile, you can further control repository-local adapters with `--tool`:
+
+- `all`: install all repository-local adapters in the profile
+- `none`: install no repository-local adapters
+- `cursor`: install only Cursor repository-local adapters
+- `copilot`: install only GitHub Copilot repository-local adapters
+- `cursor,copilot`: install both

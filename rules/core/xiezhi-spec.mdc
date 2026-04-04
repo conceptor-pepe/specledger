@@ -1,0 +1,34 @@
+---
+name: Xiezhi Spec Workflow
+description: Gate-driven workflow based on change and spec artifacts
+alwaysApply: true
+---
+
+# Xiezhi Spec Workflow
+
+## Core Rules
+
+- long-term truth lives in `specs/`
+- current work lives in `changes/`
+- high-risk changes require a change folder before implementation
+- delivery is incomplete without verify, test review, commit summary, and archive
+
+## Required Change Artifacts
+
+- `change.md`
+- `spec-delta.md`
+- `design.md`
+- `tasks.md`
+- `review.md`
+- `audit.md`
+- `test-review.md`
+- `commit-summary.md`
+- `archive.md`
+
+## Required Command Semantics
+
+- `xiezhi:new-change`
+- `xiezhi:spec-brief`
+- `xiezhi:verify`
+- `xiezhi:commit-summary`
+- `xiezhi:archive`
