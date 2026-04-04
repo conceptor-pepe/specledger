@@ -1,0 +1,49 @@
+name: Bug report
+description: Report a problem in install flow, scripts, profiles, adapters, or docs
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What broke?
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 0.1.0-alpha.1
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - install
+        - profile
+        - adapter
+        - scripts
+        - docs
+        - example
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
