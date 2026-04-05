@@ -1,4 +1,4 @@
-# xiezhi:commit-summary
+# specledger:commit-summary
 
 Generate the delivery summary for the current change.
 

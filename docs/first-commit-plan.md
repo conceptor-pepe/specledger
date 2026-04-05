@@ -1,10 +1,10 @@
 # First Commit Plan
 
-Use this plan when creating the standalone `xiezhi` repository.
+Use this plan when creating the standalone `specledger` repository.
 
 ## Commit 1
 
-`chore(repo): import xiezhi standalone prototype`
+`chore(repo): import specledger standalone prototype`
 
 Include:
 

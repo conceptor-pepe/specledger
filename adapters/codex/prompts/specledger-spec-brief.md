@@ -1,4 +1,4 @@
-# Xiezhi Spec Brief
+# SpecLedger Spec Brief
 
 Prepare `spec-delta.md`, `design.md`, and `tasks.md` for the current change before implementation begins.
 

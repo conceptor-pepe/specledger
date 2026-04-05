@@ -4,23 +4,23 @@ All adapters must preserve the same command semantics.
 
 ## Commands
 
-### `xiezhi:new-change`
+### `specledger:new-change`
 
 Create a new change directory and scaffold required artifacts.
 
-### `xiezhi:spec-brief`
+### `specledger:spec-brief`
 
 Prepare `spec-delta.md`, `design.md`, and `tasks.md` before implementation.
 
-### `xiezhi:verify`
+### `specledger:verify`
 
 Check audit, review, test review, and related docs before delivery.
 
-### `xiezhi:commit-summary`
+### `specledger:commit-summary`
 
 Generate the delivery-layer summary for the change.
 
-### `xiezhi:archive`
+### `specledger:archive`
 
 Update long-term specs and complete archive records.
 

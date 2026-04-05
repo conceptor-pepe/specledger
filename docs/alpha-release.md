@@ -2,9 +2,9 @@
 
 ## Release Goal
 
-Ship the first public Xiezhi alpha as a working repository prototype.
+Ship the first public SpecLedger alpha as a working repository prototype.
 
-This release is not about completeness. It is about proving that Xiezhi is already a coherent product:
+This release is not about completeness. It is about proving that SpecLedger is already a coherent product:
 
 - installable
 - profile-driven
@@ -14,7 +14,7 @@ This release is not about completeness. It is about proving that Xiezhi is alrea
 
 ## What This Alpha Includes
 
-- core Xiezhi README and product positioning
+- core SpecLedger README and product positioning
 - semantic versioning via `VERSION`
 - three installable profiles:
   - `minimal`
@@ -42,7 +42,7 @@ This release is not about completeness. It is about proving that Xiezhi is alrea
 
 Suggested external framing:
 
-> Xiezhi is a gate-driven engineering framework for AI-assisted software development. This alpha release introduces the first installable repository prototype, with profiles, workflow scripts, and multi-tool adapters.
+> SpecLedger is a gate-driven engineering framework for AI-assisted software development. This alpha release introduces the first installable repository prototype, with profiles, workflow scripts, and multi-tool adapters.
 
 For a copy-ready release body, see:
 
@@ -51,9 +51,9 @@ For a copy-ready release body, see:
 
 ## Validation Before Release
 
-- run `xiezhi/scripts/check.sh`
-- run `xiezhi/scripts/release-preflight.sh`
-- verify `xiezhi/scripts/extract-standalone.sh` produces a valid standalone root
+- run `specledger/scripts/check.sh`
+- run `specledger/scripts/release-preflight.sh`
+- verify `specledger/scripts/extract-standalone.sh` produces a valid standalone root
 - verify install flows for `minimal`, `go-service`, and `backend-brownfield`
 - review README, profiles, and quick start for public readability
 

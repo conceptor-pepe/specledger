@@ -5,12 +5,12 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  xiezhi/install/init.sh --target <repo-dir> [--profile backend-brownfield] [--tool all]
+  specledger/install/init.sh --target <repo-dir> [--profile backend-brownfield] [--tool all]
 
 Example:
-  xiezhi/install/init.sh --target /path/to/repo
-  xiezhi/install/init.sh --target /path/to/repo --profile minimal
-  xiezhi/install/init.sh --target /path/to/repo --profile go-service --tool cursor
+  specledger/install/init.sh --target /path/to/repo
+  specledger/install/init.sh --target /path/to/repo --profile minimal
+  specledger/install/init.sh --target /path/to/repo --profile go-service --tool cursor
 EOF
 }
 
@@ -125,7 +125,7 @@ done < "$manifest"
 mkdir -p "$target_dir/docs/changes/archive"
 
 cat <<EOF
-Initialized Xiezhi profile:
+Initialized SpecLedger profile:
   profile: $profile
   tools: $tool_mode
   target: $target_dir
@@ -134,10 +134,10 @@ Installed:
   - docs/templates/*
   - docs/specs/README.md
   - docs/changes/README.md
-  - .cursor/rules/xiezhi-spec.mdc
-  - .cursor/commands/xiezhi-*.md
-  - .github/prompts/xiezhi-*.prompt.md
-  - scripts/xiezhi-*.sh
+  - .cursor/rules/specledger-spec.mdc
+  - .cursor/commands/specledger-*.md
+  - .github/prompts/specledger-*.prompt.md
+  - scripts/specledger-*.sh
 
 Next:
   1. review installed files

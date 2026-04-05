@@ -5,10 +5,10 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  xiezhi/scripts/extract-standalone.sh --target <new-repo-dir>
+  specledger/scripts/extract-standalone.sh --target <new-repo-dir>
 
 Example:
-  xiezhi/scripts/extract-standalone.sh --target /tmp/xiezhi
+  specledger/scripts/extract-standalone.sh --target /tmp/specledger
 EOF
 }
 
@@ -80,10 +80,10 @@ done
 chmod +x \
   "$target_dir/scripts/check.sh" \
   "$target_dir/scripts/release-preflight.sh" \
-  "$target_dir/scripts/xiezhi-new-change.sh" \
-  "$target_dir/scripts/xiezhi-verify.sh" \
-  "$target_dir/scripts/xiezhi-archive.sh" \
-  "$target_dir/scripts/xiezhi-check-pr.sh" \
+  "$target_dir/scripts/specledger-new-change.sh" \
+  "$target_dir/scripts/specledger-verify.sh" \
+  "$target_dir/scripts/specledger-archive.sh" \
+  "$target_dir/scripts/specledger-check-pr.sh" \
   "$target_dir/install/init.sh" \
   "$target_dir/install/bootstrap.sh" \
   "$target_dir/adapters/codex/install.sh"
@@ -94,7 +94,7 @@ chmod +x \
 )
 
 cat <<EOF
-Extracted standalone Xiezhi repository to:
+Extracted standalone SpecLedger repository to:
   $target_dir
 
 Next:

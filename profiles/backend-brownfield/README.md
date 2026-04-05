@@ -1,12 +1,12 @@
 # backend-brownfield
 
-This profile is the default Xiezhi profile for brownfield backend repositories.
+This profile is the default SpecLedger profile for brownfield backend repositories.
 
 It installs:
 
 - change/spec documentation structure
 - standard change templates
-- core Xiezhi workflow rule
+- core SpecLedger workflow rule
 - repository-local Cursor adapters
 - repository-local GitHub Copilot adapters
 - workflow scripts

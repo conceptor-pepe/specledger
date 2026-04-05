@@ -5,8 +5,8 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  xiezhi/scripts/xiezhi-new-change.sh <change-name>
-  xiezhi/scripts/xiezhi-new-change.sh <change-name> --date YYYY-MM-DD
+  specledger/scripts/specledger-new-change.sh <change-name>
+  specledger/scripts/specledger-new-change.sh <change-name> --date YYYY-MM-DD
 EOF
 }
 

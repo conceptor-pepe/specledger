@@ -3,7 +3,7 @@
 set -euo pipefail
 
 cat <<'EOF'
-Xiezhi bootstrap prototype
+SpecLedger bootstrap prototype
 
 Suggested setup steps:
 1. copy templates into your repository

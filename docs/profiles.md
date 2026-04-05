@@ -1,12 +1,12 @@
 # Profiles
 
-Xiezhi profiles package different installation footprints for different adoption levels.
+SpecLedger profiles package different installation footprints for different adoption levels.
 
 ## `minimal`
 
 Best for:
 
-- teams trying Xiezhi for the first time
+- teams trying SpecLedger for the first time
 - repositories that want scripts and artifact structure before tool adapters
 
 Includes:

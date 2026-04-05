@@ -3,7 +3,7 @@
 set -euo pipefail
 
 if [[ $# -lt 2 || $# -gt 3 ]]; then
-  echo "Usage: xiezhi/scripts/xiezhi-check-pr.sh <base-sha> <head-sha> [pr-body-file]" >&2
+  echo "Usage: specledger/scripts/specledger-check-pr.sh <base-sha> <head-sha> [pr-body-file]" >&2
   exit 1
 fi
 
@@ -44,7 +44,7 @@ for file in "${changed_files[@]}"; do
   esac
 done
 
-if [[ "$body" == *"xiezhi spec waiver:"* ]] || [[ "$body" == *"Xiezhi Spec 豁免："* ]]; then
+if [[ "$body" == *"specledger spec waiver:"* ]] || [[ "$body" == *"SpecLedger Spec 豁免："* ]]; then
   echo "Waiver found."
   exit 0
 fi

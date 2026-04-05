@@ -1,4 +1,4 @@
-# Xiezhi Spec Brief
+# SpecLedger Spec Brief
 
 Prepare the specification brief for the current change.
 

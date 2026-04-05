@@ -1,6 +1,6 @@
-# Xiezhi New Change
+# SpecLedger New Change
 
-Create a new Xiezhi change for the current request.
+Create a new SpecLedger change for the current request.
 
 Requirements:
 

@@ -1,4 +1,4 @@
-# xiezhi:spec-brief
+# specledger:spec-brief
 
 Prepare the specification brief for the current change.
 

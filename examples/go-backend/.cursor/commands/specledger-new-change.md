@@ -1,3 +1,3 @@
-# xiezhi:new-change
+# specledger:new-change
 
 Create a new change using the repository templates in this example repository.

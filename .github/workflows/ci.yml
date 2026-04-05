@@ -1,24 +1,24 @@
-name: Xiezhi CI
+name: SpecLedger CI
 
 on:
   push:
     paths:
-      - "xiezhi/**"
+      - "specledger/**"
   pull_request:
     paths:
-      - "xiezhi/**"
+      - "specledger/**"
 
 jobs:
   validate:
-    name: Validate Xiezhi Prototype
+    name: Validate SpecLedger Prototype
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run Xiezhi checks
+      - name: Run SpecLedger checks
         shell: bash
         run: |
           set -euo pipefail
-          chmod +x xiezhi/scripts/check.sh xiezhi/scripts/release-preflight.sh
-          xiezhi/scripts/check.sh
+          chmod +x specledger/scripts/check.sh specledger/scripts/release-preflight.sh
+          specledger/scripts/check.sh

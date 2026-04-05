@@ -3,7 +3,7 @@
 set -euo pipefail
 
 usage() {
-  echo "Usage: scripts/xiezhi-verify.sh <change-dir>" >&2
+  echo "Usage: scripts/specledger-verify.sh <change-dir>" >&2
 }
 
 repo_root_from_change() {

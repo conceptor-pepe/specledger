@@ -1,15 +1,15 @@
 # Scripts
 
-These scripts are the execution layer of Xiezhi.
+These scripts are the execution layer of SpecLedger.
 
 They should remain reusable across repositories and CI environments.
 
 ## Core Scripts
 
-- `xiezhi-new-change.sh`
-- `xiezhi-verify.sh`
-- `xiezhi-archive.sh`
-- `xiezhi-check-pr.sh`
+- `specledger-new-change.sh`
+- `specledger-verify.sh`
+- `specledger-archive.sh`
+- `specledger-check-pr.sh`
 - `check.sh`
 - `release-preflight.sh`
 - `extract-standalone.sh`

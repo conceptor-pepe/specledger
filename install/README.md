@@ -5,9 +5,9 @@
 Initialize a repository with a profile:
 
 ```bash
-xiezhi/install/init.sh --target /path/to/repo --profile backend-brownfield
-xiezhi/install/init.sh --target /path/to/repo --profile go-service --tool cursor
-xiezhi/install/init.sh --target /path/to/repo --profile minimal --tool none
+specledger/install/init.sh --target /path/to/repo --profile backend-brownfield
+specledger/install/init.sh --target /path/to/repo --profile go-service --tool cursor
+specledger/install/init.sh --target /path/to/repo --profile minimal --tool none
 ```
 
 Default profile:
@@ -39,7 +39,7 @@ Example:
 Use:
 
 ```bash
-xiezhi/adapters/codex/install.sh
+specledger/adapters/codex/install.sh
 ```
 
 ## Installed Repository Assets
@@ -49,9 +49,9 @@ The init script installs:
 - `docs/templates/*`
 - `docs/specs/README.md`
 - `docs/changes/README.md`
-- `.cursor/rules/xiezhi-spec.mdc`
-- `.cursor/commands/xiezhi-*.md`
-- `.github/prompts/xiezhi-*.prompt.md`
-- `scripts/xiezhi-*.sh`
+- `.cursor/rules/specledger-spec.mdc`
+- `.cursor/commands/specledger-*.md`
+- `.github/prompts/specledger-*.prompt.md`
+- `scripts/specledger-*.sh`
 
-See profile differences in `xiezhi/docs/profiles.md`.
+See profile differences in `specledger/docs/profiles.md`.

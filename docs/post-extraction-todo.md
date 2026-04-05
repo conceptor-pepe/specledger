@@ -1,6 +1,6 @@
 # Post-Extraction TODO
 
-After Xiezhi is moved into its own repository, these are the first recommended follow-up tasks.
+After SpecLedger is moved into its own repository, these are the first recommended follow-up tasks.
 
 ## Repository Setup
 

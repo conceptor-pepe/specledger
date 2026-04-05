@@ -14,8 +14,8 @@
 - reduce overlap between `go-service` and `backend-brownfield`
 - make adapter boundaries clearer: repository-local vs global-install
 - expand the example repository into a more realistic end-to-end demo
-- make `xiezhi-verify.sh` stronger than placeholder detection
-- make `xiezhi-archive.sh` closer to a real archive workflow
+- make `specledger-verify.sh` stronger than placeholder detection
+- make `specledger-archive.sh` closer to a real archive workflow
 - clarify how teams should maintain long-term specs after repeated changes
 - validate the workflow in at least one real adopter repository
 

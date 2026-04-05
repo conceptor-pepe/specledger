@@ -1,11 +1,11 @@
 # Extraction Checklist
 
-Use this checklist when moving Xiezhi into its own repository.
+Use this checklist when moving SpecLedger into its own repository.
 
 ## Before Extraction
 
-- confirm `xiezhi/scripts/check.sh` passes
-- confirm `xiezhi/scripts/release-preflight.sh` passes
+- confirm `specledger/scripts/check.sh` passes
+- confirm `specledger/scripts/release-preflight.sh` passes
 - confirm README and release docs are ready for public readers
 
 ## Extraction
@@ -14,7 +14,7 @@ Use this checklist when moving Xiezhi into its own repository.
 2. run:
 
 ```bash
-xiezhi/scripts/extract-standalone.sh --target /path/to/new/xiezhi
+specledger/scripts/extract-standalone.sh --target /path/to/new/specledger
 ```
 
 3. initialize git in the target directory

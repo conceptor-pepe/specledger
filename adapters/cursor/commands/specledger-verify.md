@@ -1,4 +1,4 @@
-# xiezhi:verify
+# specledger:verify
 
 Verify whether the current change is ready for delivery.
 

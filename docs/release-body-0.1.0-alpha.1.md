@@ -1,8 +1,8 @@
-# Xiezhi 0.1.0-alpha.1
+# SpecLedger 0.1.0-alpha.1
 
-Xiezhi `0.1.0-alpha.1` is the first public alpha release.
+SpecLedger `0.1.0-alpha.1` is the first public alpha release.
 
-Xiezhi is a gate-driven engineering framework for AI-assisted software development. This alpha is not about completeness. It is about shipping a coherent, installable, reviewable prototype that demonstrates the product direction.
+SpecLedger is a gate-driven engineering framework for AI-assisted software development. This alpha is not about completeness. It is about shipping a coherent, installable, reviewable prototype that demonstrates the product direction.
 
 ## Highlights
 

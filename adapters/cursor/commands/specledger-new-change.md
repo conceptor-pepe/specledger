@@ -1,6 +1,6 @@
-# xiezhi:new-change
+# specledger:new-change
 
-Create a new Xiezhi change using repository templates.
+Create a new SpecLedger change using repository templates.
 
 Create:
 

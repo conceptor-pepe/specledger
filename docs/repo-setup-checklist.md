@@ -1,6 +1,6 @@
 # Repository Setup Checklist
 
-Use this after creating the standalone `xiezhi` repository on GitHub.
+Use this after creating the standalone `specledger` repository on GitHub.
 
 ## README
 

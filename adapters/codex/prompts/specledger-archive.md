@@ -1,4 +1,4 @@
-# Xiezhi Archive
+# SpecLedger Archive
 
 Archive the current change after specs are updated and delivery artifacts are complete.
 

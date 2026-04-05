@@ -1,10 +1,10 @@
 ---
-name: Xiezhi Spec Workflow
+name: SpecLedger Spec Workflow
 description: Gate-driven workflow based on change and spec artifacts
 alwaysApply: true
 ---
 
-# Xiezhi Spec Workflow
+# SpecLedger Spec Workflow
 
 ## Core Rules
 
@@ -27,8 +27,8 @@ alwaysApply: true
 
 ## Required Command Semantics
 
-- `xiezhi:new-change`
-- `xiezhi:spec-brief`
-- `xiezhi:verify`
-- `xiezhi:commit-summary`
-- `xiezhi:archive`
+- `specledger:new-change`
+- `specledger:spec-brief`
+- `specledger:verify`
+- `specledger:commit-summary`
+- `specledger:archive`

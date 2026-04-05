@@ -5,7 +5,7 @@ set -euo pipefail
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 usage() {
-  echo "Usage: scripts/xiezhi-archive.sh [--move] <change-dir>" >&2
+  echo "Usage: scripts/specledger-archive.sh [--move] <change-dir>" >&2
 }
 
 repo_root_from_change() {
@@ -75,7 +75,7 @@ if [[ -z "$repo_root" ]]; then
   exit 1
 fi
 
-"$script_dir/xiezhi-verify.sh" "$change_dir"
+"$script_dir/specledger-verify.sh" "$change_dir"
 
 for file in spec-delta.md audit.md test-review.md commit-summary.md archive.md; do
   if [[ ! -f "$change_dir/$file" ]]; then

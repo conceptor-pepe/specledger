@@ -1,4 +1,4 @@
-# Xiezhi Commit Summary
+# SpecLedger Commit Summary
 
 Generate the delivery summary for the current change and write it into `commit-summary.md`.
 

@@ -1,6 +1,6 @@
 # Example: Go Backend
 
-This example shows the repository shape after initializing Xiezhi in a Go backend project.
+This example shows the repository shape after initializing SpecLedger in a Go backend project.
 
 ## Expected Layout
 
@@ -11,10 +11,10 @@ go-backend/
 │   ├── specs/
 │   └── templates/
 ├── scripts/
-│   ├── xiezhi-new-change.sh
-│   ├── xiezhi-verify.sh
-│   ├── xiezhi-archive.sh
-│   └── xiezhi-check-pr.sh
+│   ├── specledger-new-change.sh
+│   ├── specledger-verify.sh
+│   ├── specledger-archive.sh
+│   └── specledger-check-pr.sh
 ├── .cursor/
 │   ├── rules/
 │   └── commands/

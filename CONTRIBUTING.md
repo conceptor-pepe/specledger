@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for contributing to Xiezhi.
+Thanks for contributing to SpecLedger.
 
 ## Scope
 
@@ -40,7 +40,7 @@ PRs should explain:
 
 ## Change Discipline
 
-Xiezhi is itself a workflow product. Contributions should keep these qualities:
+SpecLedger is itself a workflow product. Contributions should keep these qualities:
 
 - explicit structure
 - clear gates
