@@ -8,6 +8,10 @@
 4. Add verification scripts and CI gates.
 5. Gradually move from documentation-only enforcement to script-backed enforcement.
 
+Adapter usage details:
+
+- see `docs/adapters.md`
+
 ## Brownfield Recommendation
 
 Do not migrate every existing feature at once.

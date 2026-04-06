@@ -24,6 +24,10 @@ The validation step that checks code, docs, contracts, testing, and audit artifa
 
 The step where a completed change is folded back into long-term specs and recorded as completed work.
 
+## Error Memory
+
+The long-term record of deviations, their root causes, and the gate or template updates added to stop them from repeating.
+
 ## Format Source
 
 The canonical format for each artifact should come from the repository's real workflow rules and established design documents, not from generic template wording.

@@ -9,6 +9,8 @@ It installs:
 - core SpecLedger workflow rule
 - repository-local Cursor adapters
 - repository-local GitHub Copilot adapters
+- repository-local Claude prompt adapters
+- repository-local Krio prompt adapters
 - workflow scripts
 
 It is designed for teams that want explicit gates around high-risk backend changes.

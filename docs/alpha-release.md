@@ -21,7 +21,8 @@ This release is not about completeness. It is about proving that SpecLedger is a
   - `go-service`
   - `backend-brownfield`
 - repository init flow with optional tool selection
-- Cursor, GitHub Copilot, and Codex adapter prototypes
+- Cursor, GitHub Copilot, Claude, and Krio repository-local adapters
+- Codex global-install adapter prototype
 - workflow scripts:
   - change creation
   - verify
@@ -33,7 +34,7 @@ This release is not about completeness. It is about proving that SpecLedger is a
 ## What This Alpha Does Not Include
 
 - a separate public repository yet
-- a stable adapter installation story for every tool
+- a fully productized installation story for every tool
 - full CI/release automation outside the prototype
 - a polished website or documentation portal
 - multiple complete example applications

@@ -14,7 +14,7 @@
 - reduce overlap between `go-service` and `backend-brownfield`
 - make adapter boundaries clearer: repository-local vs global-install
 - expand the example repository into a more realistic end-to-end demo
-- make `specledger-verify.sh` stronger than placeholder detection
+- keep strengthening `specledger-verify.sh` beyond structural traceability checks
 - make `specledger-archive.sh` closer to a real archive workflow
 - clarify how teams should maintain long-term specs after repeated changes
 - validate the workflow in at least one real adopter repository

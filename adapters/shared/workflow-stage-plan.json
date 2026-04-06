@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "stages": [
+    {
+      "id": "change-init",
+      "purpose": "create the change workspace and initialize workflow state",
+      "updates": [
+        "change.md",
+        "spec-delta.md",
+        "design.md",
+        "tasks.md",
+        "review.md",
+        "audit.md",
+        "test-review.md",
+        "commit-summary.md",
+        "archive.md",
+        "error-memory.md",
+        "workflow-state.json"
+      ],
+      "completion_checks": [
+        "change directory exists",
+        "workflow-state.json exists"
+      ],
+      "confirmation_required": false,
+      "next_stage": "spec-brief"
+    },
+    {
+      "id": "spec-brief",
+      "purpose": "prepare requirement, design, and task artifacts before implementation",
+      "updates": [
+        "change.md",
+        "spec-delta.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "completion_checks": [
+        "required files contain no placeholders",
+        "traceability ids REQ/DES/RISK/TASK/CASE are established"
+      ],
+      "confirmation_required": true,
+      "confirmation_key": "design-review",
+      "next_stage": "implementation"
+    },
+    {
+      "id": "implementation",
+      "purpose": "implement code changes according to approved tasks",
+      "updates": [
+        "code",
+        "tasks.md"
+      ],
+      "completion_checks": [
+        "implementation aligns with TASK ids",
+        "task status is updated"
+      ],
+      "confirmation_required": false,
+      "next_stage": "review-pack"
+    },
+    {
+      "id": "review-pack",
+      "purpose": "prepare review, test review, audit, and error memory artifacts",
+      "updates": [
+        "review.md",
+        "test-review.md",
+        "audit.md",
+        "error-memory.md"
+      ],
+      "completion_checks": [
+        "review has four viewpoints",
+        "test-review has white-box coverage and issue linkage",
+        "error-memory captures new or reused lessons"
+      ],
+      "confirmation_required": true,
+      "confirmation_key": "verify",
+      "next_stage": "verify"
+    },
+    {
+      "id": "verify",
+      "purpose": "run hard gates before delivery",
+      "updates": [
+        "workflow-state.json"
+      ],
+      "completion_checks": [
+        "scripts/specledger-verify.sh passes"
+      ],
+      "confirmation_required": true,
+      "confirmation_key": "commit-summary",
+      "next_stage": "commit-summary"
+    },
+    {
+      "id": "commit-summary",
+      "purpose": "prepare the delivery summary after verification succeeds",
+      "updates": [
+        "commit-summary.md"
+      ],
+      "completion_checks": [
+        "commit-summary matches review/test-review/audit conclusions"
+      ],
+      "confirmation_required": true,
+      "confirmation_key": "archive",
+      "next_stage": "archive"
+    },
+    {
+      "id": "archive",
+      "purpose": "sync long-term specs and run archive checks",
+      "updates": [
+        "archive.md",
+        "specs"
+      ],
+      "completion_checks": [
+        "scripts/specledger-archive.sh passes",
+        "workflow status moves to completed"
+      ],
+      "confirmation_required": false,
+      "next_stage": ""
+    }
+  ]
+}

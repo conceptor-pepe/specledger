@@ -8,3 +8,9 @@ Use this order:
 2. API contract
 3. module coupling
 4. task split
+
+Use stable traceability IDs across artifacts:
+
+- `REQ-*` for spec requirements
+- `DES-*` for design decisions
+- `TASK-*` for smallest shippable slices

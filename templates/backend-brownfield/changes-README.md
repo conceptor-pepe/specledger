@@ -1,11 +1,11 @@
 # Changes
 
-`changes/` stores the current change lifecycle.
+`docs/changes/` stores the current change lifecycle.
 
 Recommended structure:
 
 ```text
-changes/
+docs/changes/
 ├── <yyyy-mm-dd-change-name>/
 │   ├── change.md
 │   ├── spec-delta.md
@@ -15,7 +15,9 @@ changes/
 │   ├── audit.md
 │   ├── test-review.md
 │   ├── commit-summary.md
-│   └── archive.md
+│   ├── archive.md
+│   ├── error-memory.md
+│   └── workflow-state.json
 └── archive/
 ```
 

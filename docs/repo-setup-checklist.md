@@ -18,6 +18,7 @@ Use this after creating the standalone `specledger` repository on GitHub.
 
 - enable Actions
 - verify `.github/workflows/ci.yml` runs on push and pull request
+- confirm CI executes `./scripts/check.sh` from the repository root
 
 ## Release
 

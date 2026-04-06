@@ -11,6 +11,7 @@ Example:
   specledger/install/init.sh --target /path/to/repo
   specledger/install/init.sh --target /path/to/repo --profile minimal
   specledger/install/init.sh --target /path/to/repo --profile go-service --tool cursor
+  specledger/install/init.sh --target /path/to/repo --profile backend-brownfield --tool cursor,claude
 EOF
 }
 
@@ -65,6 +66,7 @@ mkdir -p "$target_dir"
 
 should_install_path() {
   local rel_dst="$1"
+  local selected_tools=",${tool_mode},"
 
   case "$tool_mode" in
     all)
@@ -72,35 +74,35 @@ should_install_path() {
       ;;
     none)
       case "$rel_dst" in
-        .cursor/commands/*|.github/prompts/*)
+        .cursor/commands/*|.github/prompts/*|.claude/prompts/*|.krio/prompts/*)
           return 1
           ;;
       esac
-      return 0
-      ;;
-    cursor)
-      case "$rel_dst" in
-        .github/prompts/*)
-          return 1
-          ;;
-      esac
-      return 0
-      ;;
-    copilot)
-      case "$rel_dst" in
-        .cursor/commands/*)
-          return 1
-          ;;
-      esac
-      return 0
-      ;;
-    cursor,copilot|copilot,cursor)
       return 0
       ;;
     *)
-      echo "Unsupported --tool value: $tool_mode" >&2
-      echo "Supported values: all, none, cursor, copilot, cursor,copilot" >&2
-      exit 1
+      case ",$tool_mode," in
+        *,all,*|*,none,*)
+          echo "Unsupported mixed --tool value: $tool_mode" >&2
+          exit 1
+          ;;
+      esac
+
+      case "$rel_dst" in
+        .cursor/commands/*)
+          [[ "$selected_tools" == *",cursor,"* ]] && return 0 || return 1
+          ;;
+        .github/prompts/*)
+          [[ "$selected_tools" == *",copilot,"* ]] && return 0 || return 1
+          ;;
+        .claude/prompts/*)
+          [[ "$selected_tools" == *",claude,"* ]] && return 0 || return 1
+          ;;
+        .krio/prompts/*)
+          [[ "$selected_tools" == *",krio,"* ]] && return 0 || return 1
+          ;;
+      esac
+      return 0
       ;;
   esac
 }
@@ -120,6 +122,11 @@ while IFS=$'\t' read -r src rel_dst; do
 
   mkdir -p "$(dirname "$dst_path")"
   cp "$src_path" "$dst_path"
+  case "$dst_path" in
+    *.sh)
+      chmod +x "$dst_path"
+      ;;
+  esac
 done < "$manifest"
 
 mkdir -p "$target_dir/docs/changes/archive"
@@ -137,7 +144,10 @@ Installed:
   - .cursor/rules/specledger-spec.mdc
   - .cursor/commands/specledger-*.md
   - .github/prompts/specledger-*.prompt.md
+  - .claude/prompts/specledger-*.md
+  - .krio/prompts/specledger-*.md
   - scripts/specledger-*.sh
+  - scripts/specld-*.sh
 
 Next:
   1. review installed files

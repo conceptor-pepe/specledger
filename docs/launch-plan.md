@@ -10,6 +10,7 @@ Move SpecLedger from an internal prototype inside the backend repository to a st
 - run `specledger/scripts/extract-standalone.sh --target <new-repo-dir>`
 - verify relative paths in scripts and docs
 - run repository checks in the new root
+- verify GitHub Actions runs `./scripts/check.sh` successfully in the standalone repository
 
 ## Phase 2: Public Narrative
 

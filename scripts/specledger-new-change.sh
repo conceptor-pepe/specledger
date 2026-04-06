@@ -43,29 +43,34 @@ if [[ ! "$change_name" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]]; then
 fi
 
 root_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-change_dir="$root_dir/examples/go-backend/changes/${change_date}-${change_name}"
-template_dir="$root_dir/templates/backend-brownfield"
+change_dir="$root_dir/docs/changes/${change_date}-${change_name}"
+if [[ -d "$root_dir/docs/templates" ]]; then
+  template_dir="$root_dir/docs/templates"
+else
+  template_dir="$root_dir/templates/backend-brownfield"
+fi
 
 mkdir -p "$change_dir"
 
-for name in change spec-delta tasks; do
+for name in change spec-delta design tasks review audit test-review commit-summary archive error-memory; do
   sed "s/<change-name>/${change_date}-${change_name}/g" "$template_dir/$name.md" >"$change_dir/$name.md"
 done
 
-cat >"$change_dir/design.md" <<EOF
-# Design: ${change_date}-${change_name}
-
-## Overview
-
-<fill design details>
+cat >"$change_dir/workflow-state.json" <<EOF
+{
+  "change_id": "${change_date}-${change_name}",
+  "current_stage": "change-init",
+  "stage_status": "completed",
+  "next_stage": "spec-brief",
+  "waiting_for_confirmation": false,
+  "pending_confirmation_for": "",
+  "completed_stages": [
+    "change-init"
+  ],
+  "recommended_command": "specledger:start",
+  "recommended_alias": "specld:start",
+  "updated_at": "${change_date}"
+}
 EOF
-
-for file in review.md audit.md test-review.md commit-summary.md archive.md; do
-  cat >"$change_dir/$file" <<EOF
-# ${file%.md}: ${change_date}-${change_name}
-
-<fill content>
-EOF
-done
 
 echo "Created change: $change_dir"

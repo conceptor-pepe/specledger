@@ -24,6 +24,7 @@ alwaysApply: true
 - `test-review.md`
 - `commit-summary.md`
 - `archive.md`
+- `error-memory.md`
 
 ## Format Discipline
 
@@ -31,6 +32,7 @@ alwaysApply: true
 - `design.md` should prefer the phase 0.5 `Step 1 -> Step 4` structure
 - `commit-summary.md` should follow the repository commit summary rule format
 - `test-review.md` should follow the repository test review structure instead of a generic summary
+- `error-memory.md` should record reusable lessons and the gate updates derived from this change
 
 ## Required Command Semantics
 

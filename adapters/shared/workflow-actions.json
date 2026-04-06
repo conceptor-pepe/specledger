@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "stages": {
+    "spec-brief": {
+      "artifacts_to_update": [
+        "change.md",
+        "spec-delta.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "agent_actions": [
+        "read current user intent and normalize change scope",
+        "update change.md with background, scope, non-goals, impact, risk, rollback",
+        "update spec-delta.md with REQ ids and scenarios",
+        "update design.md with DES ids, RISK ids, task split, and coverage mappings",
+        "update tasks.md with smallest shippable TASK rows"
+      ],
+      "completion_gate": "files_ready_for_design_review",
+      "confirmation_prompt": "方案文档已更新，是否确认进入实现阶段？",
+      "next_stage_on_approve": "implementation"
+    },
+    "implementation": {
+      "artifacts_to_update": [
+        "code",
+        "tasks.md"
+      ],
+      "agent_actions": [
+        "implement code according to approved TASK ids",
+        "keep task status aligned with actual implementation progress",
+        "preserve REQ/DES/RISK/TASK traceability in code and docs"
+      ],
+      "completion_gate": "implementation_ready_for_review_pack",
+      "confirmation_prompt": "",
+      "next_stage_on_approve": "review-pack"
+    },
+    "review-pack": {
+      "artifacts_to_update": [
+        "review.md",
+        "test-review.md",
+        "audit.md",
+        "error-memory.md"
+      ],
+      "agent_actions": [
+        "write four-view review conclusions",
+        "write white-box test review with CASE to REV or TEST-RISK linkage",
+        "record audit results and validation commands",
+        "capture reusable lessons in error-memory.md"
+      ],
+      "completion_gate": "files_ready_for_verify",
+      "confirmation_prompt": "评审和测试材料已补齐，是否确认进入 verify？",
+      "next_stage_on_approve": "verify"
+    },
+    "verify": {
+      "artifacts_to_update": [
+        "workflow-state.json"
+      ],
+      "agent_actions": [
+        "run scripts/specledger-verify.sh on the active change",
+        "stop on failure and report blocking issues",
+        "if verify passes, move to commit-summary confirmation"
+      ],
+      "completion_gate": "verify_passed",
+      "confirmation_prompt": "verify 已通过，是否确认生成 commit summary？",
+      "next_stage_on_approve": "commit-summary"
+    },
+    "commit-summary": {
+      "artifacts_to_update": [
+        "commit-summary.md"
+      ],
+      "agent_actions": [
+        "write commit-summary.md from verified artifacts",
+        "keep validation results consistent with audit and test-review",
+        "include traceability section"
+      ],
+      "completion_gate": "commit_summary_ready_for_archive",
+      "confirmation_prompt": "commit summary 已生成，是否确认进入 archive？",
+      "next_stage_on_approve": "archive"
+    },
+    "archive": {
+      "artifacts_to_update": [
+        "archive.md",
+        "specs",
+        "workflow-state.json"
+      ],
+      "agent_actions": [
+        "sync long-term specs from spec-delta.md",
+        "complete archive.md traceability summary",
+        "run scripts/specledger-archive.sh on the active change",
+        "if archive checks pass, mark workflow completed"
+      ],
+      "completion_gate": "archive_passed",
+      "confirmation_prompt": "",
+      "next_stage_on_approve": ""
+    }
+  }
+}

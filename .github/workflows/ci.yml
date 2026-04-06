@@ -2,23 +2,25 @@ name: SpecLedger CI
 
 on:
   push:
-    paths:
-      - "specledger/**"
   pull_request:
-    paths:
-      - "specledger/**"
+  workflow_dispatch:
 
 jobs:
   validate:
-    name: Validate SpecLedger Prototype
+    name: Validate SpecLedger
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Prepare Scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          chmod +x scripts/check.sh scripts/release-preflight.sh scripts/specledger-verify.sh scripts/specledger-archive.sh scripts/specledger-new-change.sh install/init.sh
+
       - name: Run SpecLedger checks
         shell: bash
         run: |
           set -euo pipefail
-          chmod +x specledger/scripts/check.sh specledger/scripts/release-preflight.sh
-          specledger/scripts/check.sh
+          ./scripts/check.sh

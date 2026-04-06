@@ -37,6 +37,43 @@ require_no_placeholders() {
   return 0
 }
 
+require_heading() {
+  local path="$1"
+  local pattern="$2"
+  local message="$3"
+  if ! rg -n "$pattern" "$path" >/dev/null 2>&1; then
+    echo "$message: $path" >&2
+    exit 1
+  fi
+}
+
+extract_ids() {
+  local path="$1"
+  local prefix="$2"
+  rg -o "${prefix}-[0-9]{3}" "$path" | sort -u
+}
+
+require_ids_referenced() {
+  local source_path="$1"
+  local target_path="$2"
+  local prefix="$3"
+  local label="$4"
+  local ids
+  ids="$(extract_ids "$source_path" "$prefix" || true)"
+  if [[ -z "$ids" ]]; then
+    echo "Missing ${prefix} ids in $source_path" >&2
+    exit 1
+  fi
+
+  while IFS= read -r id; do
+    [[ -z "$id" ]] && continue
+    if ! rg -n "$id" "$target_path" >/dev/null 2>&1; then
+      echo "$label is missing reference to $id from $source_path: $target_path" >&2
+      exit 1
+    fi
+  done <<<"$ids"
+}
+
 move_after_check=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -77,13 +114,24 @@ fi
 
 "$script_dir/specledger-verify.sh" "$change_dir"
 
-for file in spec-delta.md audit.md test-review.md commit-summary.md archive.md; do
+for file in spec-delta.md audit.md test-review.md commit-summary.md archive.md error-memory.md; do
   if [[ ! -f "$change_dir/$file" ]]; then
     echo "Missing file: $change_dir/$file" >&2
     exit 1
   fi
   require_no_placeholders "$change_dir/$file"
 done
+
+require_heading "$change_dir/archive.md" '^## Traceability Summary$' "archive.md must include traceability summary"
+require_heading "$change_dir/error-memory.md" '^## New Lessons$' "error-memory.md must include new lessons"
+require_heading "$change_dir/error-memory.md" '^## Reused Lessons$' "error-memory.md must include reused lessons"
+
+require_ids_referenced "$change_dir/spec-delta.md" "$change_dir/archive.md" "REQ" "archive.md"
+require_ids_referenced "$change_dir/design.md" "$change_dir/archive.md" "DES" "archive.md"
+require_ids_referenced "$change_dir/tasks.md" "$change_dir/archive.md" "TASK" "archive.md"
+require_ids_referenced "$change_dir/review.md" "$change_dir/archive.md" "REV" "archive.md"
+require_ids_referenced "$change_dir/test-review.md" "$change_dir/archive.md" "CASE" "archive.md"
+require_ids_referenced "$change_dir/error-memory.md" "$change_dir/archive.md" "MEM" "archive.md"
 
 mapfile -t spec_targets < <(grep -o '`docs/specs/[^`]*`' "$change_dir/archive.md" | tr -d '`')
 if [[ ${#spec_targets[@]} -eq 0 ]]; then

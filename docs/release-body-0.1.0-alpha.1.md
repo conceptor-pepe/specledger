@@ -11,7 +11,7 @@ SpecLedger is a gate-driven engineering framework for AI-assisted software devel
   - `go-service`
   - `backend-brownfield`
 - Repository initialization with optional tool selection
-- Repository-local adapters for Cursor and GitHub Copilot
+- Repository-local adapters for Cursor, GitHub Copilot, Claude, and Krio
 - Global-install adapter prototype for Codex
 - Workflow scripts for:
   - change creation
@@ -44,6 +44,7 @@ SpecLedger is a gate-driven engineering framework for AI-assisted software devel
 ```bash
 ./install/init.sh --target /path/to/repo --profile minimal --tool none
 ./install/init.sh --target /path/to/repo --profile go-service --tool cursor
+./install/init.sh --target /path/to/repo --profile go-service --tool claude,krio
 ./install/init.sh --target /path/to/repo --profile backend-brownfield
 ```
 

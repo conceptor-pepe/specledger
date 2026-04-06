@@ -44,6 +44,7 @@ Examples:
 ```bash
 ./install/init.sh --target /path/to/repo --profile minimal --tool none
 ./install/init.sh --target /path/to/repo --profile go-service --tool cursor
+./install/init.sh --target /path/to/repo --profile go-service --tool claude,krio
 ```
 
 ## Profiles
@@ -63,13 +64,14 @@ Examples:
 - `test-review.md`
 - `commit-summary.md`
 - `archive.md`
+- `error-memory.md`
 
 ## What This Alpha Includes
 
 - installable profiles
 - core workflow rules
 - templates for change-driven work
-- Cursor and GitHub Copilot repository-local adapters
+- Cursor, GitHub Copilot, Claude, and Krio repository-local adapters
 - Codex global-install adapter prototype
 - shell scripts for workflow execution and validation
 - repository self-check and release preflight
@@ -85,6 +87,7 @@ Examples:
 ## Documentation
 
 - `docs/profiles.md`
+- `docs/adapters.md`
 - `docs/quick-start.md`
 - `docs/release.md`
 - `docs/alpha-release.md`

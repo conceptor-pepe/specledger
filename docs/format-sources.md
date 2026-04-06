@@ -28,9 +28,11 @@ SpecLedger should not invent artifact formats ad hoc. The repository templates s
     - `回滚思路`
 - `tasks.md`
   - use numbered phases and checkbox tasks
+  - each task must be a smallest shippable slice with requirement, design, acceptance, test, and commit boundary
 
 ## Template Discipline
 
 - if a repository already has a stronger artifact format, prefer that format over a generic template
 - example files must evolve together with templates
 - verification scripts must support the canonical artifact formats that templates generate
+- traceability IDs should be stable across artifacts: `REQ-*`, `DES-*`, `TASK-*`, `REV-*`, `CASE-*`

@@ -11,7 +11,7 @@ This release introduces SpecLedger as a gate-driven engineering framework for AI
   - `go-service`
   - `backend-brownfield`
 - Added repository initialization with optional tool selection
-- Added repository-local adapters for Cursor and GitHub Copilot
+- Added repository-local adapters for Cursor, GitHub Copilot, Claude, and Krio
 - Added a global-install adapter prototype for Codex
 - Added workflow scripts for:
   - change creation
@@ -45,5 +45,6 @@ Try one of the following:
 ```bash
 ./install/init.sh --target /path/to/repo --profile minimal --tool none
 ./install/init.sh --target /path/to/repo --profile go-service --tool cursor
+./install/init.sh --target /path/to/repo --profile go-service --tool claude,krio
 ./install/init.sh --target /path/to/repo --profile backend-brownfield
 ```

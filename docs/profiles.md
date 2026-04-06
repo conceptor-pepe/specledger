@@ -34,6 +34,8 @@ Includes:
 - full template set
 - core workflow rule
 - Cursor command adapters
+- Claude prompt adapters
+- Krio prompt adapters
 - scripts
 
 ## `backend-brownfield`
@@ -49,6 +51,8 @@ Includes:
 - core workflow rule
 - Cursor command adapters
 - GitHub Copilot prompts
+- Claude prompt adapters
+- Krio prompt adapters
 - scripts
 
 ## Recommendation
@@ -67,4 +71,11 @@ After choosing a profile, you can further control repository-local adapters with
 - `none`: install no repository-local adapters
 - `cursor`: install only Cursor repository-local adapters
 - `copilot`: install only GitHub Copilot repository-local adapters
-- `cursor,copilot`: install both
+- `claude`: install only Claude prompt adapters
+- `krio`: install only Krio prompt adapters
+- comma-separated combinations such as `cursor,copilot`, `cursor,claude`, or `claude,krio`
+
+Current note:
+
+- Claude and Krio prompt adapters are wired into both `go-service` and `backend-brownfield`
+- GitHub Copilot prompts remain installed only in `backend-brownfield`
