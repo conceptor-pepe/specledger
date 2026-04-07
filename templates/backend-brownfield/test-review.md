@@ -2,6 +2,12 @@
 
 > 本文件用于记录测试专家视角的白盒评审、风险结论、发布建议和问题闭环。
 
+## Policy Sources
+
+- test review policy: `docs/specledger/policies/test-review-policy.md`
+- coding standards policy: `docs/specledger/policies/coding-standards.md`
+- repo-specific test focus used in this change: `<none / path / note>`
+
 ## 判定规则
 
 - `pass`：从代码实现和已有证据看，该测试点当前没有发现阻塞性问题。

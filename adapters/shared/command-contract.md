@@ -117,6 +117,7 @@ Check audit, review, test review, and related docs before delivery.
 Must verify:
 
 - audit / build / lint / test status
+- repository policy linkage for coding standards, audit, and test review when the repo defines local policy files
 - four-view `review.md`: product, architecture, senior engineer, test readiness
 - white-box `test-review.md` structure and conclusions
 - `Issues Found` linkage to `REV-*` or `TEST-RISK-*`
@@ -158,3 +159,13 @@ When adding support for a new tool such as Claude or Krio:
 2. Reuse the same artifact names and stable IDs.
 3. Do not weaken review, test-review, archive, or error-memory expectations.
 4. Prefer adapting transport and invocation only; do not fork workflow meaning by tool.
+
+## Repository Policy Rule
+
+Repositories may define project-specific policy files for:
+
+- coding standards
+- audit gates
+- test review expectations
+
+Adapters and scripts must preserve the artifact semantics, but they must not hard-code one universal project rule set when the repository provides its own policy files.

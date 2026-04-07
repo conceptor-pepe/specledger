@@ -41,3 +41,19 @@ This file stores recurring deviation patterns found during implementation, revie
 - prevention rule: each task must declare its own goal, dependencies, touched files, acceptance criteria, test cases, and independent commit boundary
 - gate update: `tasks.md` template upgraded and verified by `specledger-verify.sh`
 - status: applied
+
+### MEM-003
+
+- symptom: `audit.md` degraded into a shallow command log and failed to capture the real go-audit and test-review gates used in Cursor global workflow
+- root cause: the audit template only asked for compile/test commands and a single go-audit result, so agents skipped the 11-rule audit breakdown and stage-5 test gate context
+- prevention rule: `audit.md` must record validation summary, go-audit execution evidence, all 11 go-audit checklist items, test functionality review gate status, blockers, and release conclusion
+- gate update: `templates/backend-brownfield/audit.md`, `adapters/cursor/commands/specledger-verify.md`, and `scripts/specledger-verify.sh` now require the richer audit structure
+- status: applied
+
+### MEM-004
+
+- symptom: project teams needed different audit, coding standards, and test-review expectations, but SpecLedger gates were drifting toward one fixed global rule set
+- root cause: templates and verify logic encoded a single default audit checklist instead of separating workflow semantics from repository-specific policy
+- prevention rule: keep SpecLedger responsible for artifact shape and traceability, while repository policy files define local coding standards, audit gates, and test-review expectations
+- gate update: policy templates added under `docs/specledger/policies/`; `audit.md`, `review.md`, and `test-review.md` now reference policy sources; `specledger-verify.sh` validates policy linkage without forcing one universal checklist
+- status: applied

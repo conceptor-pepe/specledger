@@ -10,6 +10,9 @@ templates/backend-brownfield/archive.md	docs/templates/archive.md
 templates/backend-brownfield/error-memory.md	docs/templates/error-memory.md
 templates/backend-brownfield/specs-README.md	docs/specs/README.md
 templates/backend-brownfield/changes-README.md	docs/changes/README.md
+templates/backend-brownfield/audit-policy.md	docs/specledger/policies/audit-policy.md
+templates/backend-brownfield/coding-standards.md	docs/specledger/policies/coding-standards.md
+templates/backend-brownfield/test-review-policy.md	docs/specledger/policies/test-review-policy.md
 adapters/shared/command-contract.md	docs/specledger/adapters/command-contract.md
 adapters/shared/adapter-checklist.md	docs/specledger/adapters/adapter-checklist.md
 adapters/shared/workflow-protocol.md	docs/specledger/adapters/workflow-protocol.md

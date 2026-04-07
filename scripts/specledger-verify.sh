@@ -466,6 +466,20 @@ extract_audit_status() {
   return 1
 }
 
+audit_rule_row_count() {
+  local file="$1"
+  rg -c '^\| `?AUDIT-[A-Z-]+[0-9]+`? \|' "$file" 2>/dev/null || true
+}
+
+require_file_if_present_parent() {
+  local file="$1"
+  local message="$2"
+  if [[ ! -f "$file" ]]; then
+    echo "$message: $file" >&2
+    exit 1
+  fi
+}
+
 warn_status() {
   local label="$1"
   local status="$2"
@@ -531,6 +545,12 @@ require_heading "$change_dir/review.md" '^## (Product Review|产品经理审计�
 require_heading "$change_dir/review.md" '^## (Architecture Review|架构师审计记录)$' "review.md must include architecture review"
 require_heading "$change_dir/review.md" '^## (Senior Engineer Review|资深程序员审计记录)$' "review.md must include senior engineer review"
 require_heading "$change_dir/review.md" '^## (Test Review Readiness|测试专家审计记录)$' "review.md must include test readiness"
+require_heading "$change_dir/review.md" '^### 架构 Gate 结论$' "review.md must include architecture gate summary"
+require_heading "$change_dir/review.md" '^### 架构检查矩阵$' "review.md must include architecture review matrix"
+require_heading "$change_dir/review.md" '^### 架构关键判断$' "review.md must include architecture key judgments"
+require_heading "$change_dir/review.md" '^### 代码 Gate 结论$' "review.md must include code gate summary"
+require_heading "$change_dir/review.md" '^### 代码检查矩阵$' "review.md must include code review matrix"
+require_heading "$change_dir/review.md" '^### 代码关键判断$' "review.md must include code key judgments"
 
 require_heading "$change_dir/test-review.md" '^## 测试用例设计$' "test-review.md must include test case design"
 require_heading "$change_dir/test-review.md" '^## 按用例评审结果$' "test-review.md must include case-by-case results"
@@ -538,6 +558,19 @@ require_heading "$change_dir/test-review.md" '^## 白盒覆盖检查$' "test-rev
 require_heading "$change_dir/test-review.md" '^## 需修复（Critical）$' "test-review.md must include critical issues"
 require_heading "$change_dir/test-review.md" '^## 可选优化（Suggestion）$' "test-review.md must include optional improvements"
 require_heading "$change_dir/test-review.md" '^## 测试功能结论$' "test-review.md must include test conclusion"
+
+require_heading "$change_dir/audit.md" '^## Scope$' "audit.md must include scope"
+require_heading "$change_dir/audit.md" '^## Policy Sources$' "audit.md must include policy sources"
+require_heading "$change_dir/audit.md" '^## Validation Summary$' "audit.md must include validation summary"
+require_heading "$change_dir/audit.md" '^## Go Audit Execution$' "audit.md must include go audit execution"
+require_heading "$change_dir/audit.md" '^## Audit Rule Checklist$' "audit.md must include audit rule checklist"
+require_heading "$change_dir/audit.md" '^## Test Functionality Review Gate$' "audit.md must include test functionality gate"
+require_heading "$change_dir/audit.md" '^## Additional Verification$' "audit.md must include additional verification"
+require_heading "$change_dir/audit.md" '^## Blocking Issues$' "audit.md must include blocking issues"
+require_heading "$change_dir/audit.md" '^## Current Conclusion$' "audit.md must include current conclusion"
+
+require_heading "$change_dir/review.md" '^## Policy Sources$' "review.md must include policy sources"
+require_heading "$change_dir/test-review.md" '^## Policy Sources$' "test-review.md must include policy sources"
 
 require_ids_present "$change_dir/spec-delta.md" "REQ" "spec-delta.md must define REQ ids"
 require_ids_present "$change_dir/design.md" "DES" "design.md must define DES ids"
@@ -566,10 +599,18 @@ require_nontrivial_value "$change_dir/review.md" 'module boundary' "review archi
 require_nontrivial_value "$change_dir/review.md" 'coupling decision' "review architecture coupling decision"
 require_nontrivial_value "$change_dir/review.md" 'data consistency' "review architecture data consistency"
 require_nontrivial_value "$change_dir/review.md" 'observability' "review architecture observability"
+require_nontrivial_value "$change_dir/review.md" 'release architecture verdict' "review architecture verdict"
+require_nontrivial_value "$change_dir/review.md" 'shallow module risk' "review shallow module risk"
+require_nontrivial_value "$change_dir/review.md" 'coupling hotspot' "review coupling hotspot"
+require_nontrivial_value "$change_dir/review.md" 'migration / script safety' "review migration safety"
 require_nontrivial_value "$change_dir/review.md" 'code path correctness' "review engineer code path correctness"
 require_nontrivial_value "$change_dir/review.md" 'edge cases checked' "review engineer edge cases"
 require_nontrivial_value "$change_dir/review.md" 'failure handling' "review engineer failure handling"
 require_nontrivial_value "$change_dir/review.md" 'maintainability' "review engineer maintainability"
+require_nontrivial_value "$change_dir/review.md" 'release code verdict' "review engineer verdict"
+require_nontrivial_value "$change_dir/review.md" 'silent failure risk' "review silent failure risk"
+require_nontrivial_value "$change_dir/review.md" 'hidden branching risk' "review hidden branching risk"
+require_nontrivial_value "$change_dir/review.md" 'maintainability debt' "review maintainability debt"
 require_nontrivial_value "$change_dir/review.md" 'unit / integration coverage sufficiency' "review test readiness coverage"
 require_nontrivial_value "$change_dir/review.md" 'white-box weak spots' "review test readiness white-box weak spots"
 require_nontrivial_value "$change_dir/review.md" 'regressions to watch' "review test readiness regressions"
@@ -582,6 +623,23 @@ require_nontrivial_value "$change_dir/test-review.md" 'product conclusion' "test
 require_nontrivial_value "$change_dir/test-review.md" 'architect conclusion' "test-review architect conclusion"
 require_nontrivial_value "$change_dir/test-review.md" 'senior engineer conclusion' "test-review engineer conclusion"
 require_nontrivial_value "$change_dir/test-review.md" 'tester conclusion' "test-review tester conclusion"
+
+require_nontrivial_value "$change_dir/audit.md" 'delivery status' "audit delivery status"
+require_nontrivial_value "$change_dir/audit.md" 'audit gate' "audit gate status"
+require_nontrivial_value "$change_dir/audit.md" 'release recommendation' "audit release recommendation"
+require_nontrivial_value "$change_dir/audit.md" 'summary' "audit summary"
+
+audit_rule_rows="$(audit_rule_row_count "$change_dir/audit.md")"
+if [[ "$audit_rule_rows" -lt 1 ]]; then
+  echo "audit.md must include at least one project-defined audit rule row: $change_dir/audit.md" >&2
+  exit 1
+fi
+
+if [[ -d "$repo_root/docs/specledger/policies" ]]; then
+  require_file_if_present_parent "$repo_root/docs/specledger/policies/audit-policy.md" "Missing repository audit policy"
+  require_file_if_present_parent "$repo_root/docs/specledger/policies/coding-standards.md" "Missing repository coding standards policy"
+  require_file_if_present_parent "$repo_root/docs/specledger/policies/test-review-policy.md" "Missing repository test review policy"
+fi
 
 require_result_table_matches_cases "$change_dir/test-review.md"
 
